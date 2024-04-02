@@ -3,25 +3,25 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Sloat Machine</title>
+    <title>Unity WebGL Player | WebGLJapaneseInput</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-       <div id="unity-container"style="width: 100% ; height: 100% ">
-      <canvas id="unity-canvas" width= auto height= auto></canvas>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=640 height=480></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
         </div>
       </div>
-      <!--<div id="unity-warning"> </div>
+      <div id="unity-warning"> </div>
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Sloat Machine</div>
-      </div-->
+        <div id="unity-build-title">WebGLJapaneseInput</div>
+      </div>
     </div>
     <script>
       var container = document.querySelector("#unity-container");
@@ -30,27 +30,6 @@
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
-      
-      
-      
-      
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-        config.devicePixelRatio = 1;
-        hideFullScreenButton = "true";
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        container.className = "unity-mobile";
-
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
-
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
-      }
 
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
@@ -77,17 +56,16 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/buildwebgl.loader.js";
+      var loaderUrl = buildUrl + "/TestBuild.loader.js";
       var config = {
-        dataUrl: buildUrl + "/buildwebgl.data",
-        frameworkUrl: buildUrl + "/buildwebgl.framework.js",
-        codeUrl: buildUrl + "/buildwebgl.wasm",
+        dataUrl: buildUrl + "/TestBuild.data.gz",
+        frameworkUrl: buildUrl + "/TestBuild.framework.js.gz",
+        codeUrl: buildUrl + "/TestBuild.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "RootPointers",
-        productName: "Sloat Machine",
-        productVersion: "0.1",
+        companyName: "DefaultCompany",
+        productName: "WebGLJapaneseInput",
+        productVersion: "1.0",
         showBanner: unityShowBanner,
-
       };
 
       // By default Unity keeps WebGL canvas render target size matched with
@@ -96,37 +74,18 @@
       // happening inside the engine, and you would instead like to size up
       // the canvas DOM size and WebGL render target sizes yourself.
       // config.matchWebGLToCanvasSize = false;
-       
-      
+
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         container.className = "unity-mobile";
+        // Avoid draining fillrate performance on mobile devices,
+        // and default/override low DPI mode on mobile browsers.
         config.devicePixelRatio = 1;
-        hideFullScreenButton = "true";
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        container.className = "unity-mobile";
-
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
-
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
+        unityShowBanner('WebGL builds are not supported on mobile devices.');
+      } else {
+        canvas.style.width = "640px";
+        canvas.style.height = "480px";
       }
-
-      
-      
-      function updateCanvasSize() 
-      {
-          canvas.style.width = window.innerWidth + 'px';
-          canvas.style.height = window.innerHeight + 'px';
-      }
-
-        // Listen for the resize event and call updateCanvasSize() when the screen size changes
-        window.addEventListener('resize', updateCanvasSize);
-
+      loadingBar.style.display = "block";
 
       var script = document.createElement("script");
       script.src = loaderUrl;
@@ -139,7 +98,7 @@
             unityInstance.SetFullscreen(1);
           };
         }).catch((message) => {
-          console.log(message);
+          alert(message);
         });
       };
       document.body.appendChild(script);
