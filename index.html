@@ -3,25 +3,25 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | WebGLJapaneseInput</title>
+    <title>Unity WebGL Player | Sloat Machine</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=640 height=480></canvas>
+       <div id="unity-container"style="width: 100% ; height: 100% ">
+      <canvas id="unity-canvas" width= auto height= auto></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
         </div>
       </div>
-      <div id="unity-warning"> </div>
+      <!--<div id="unity-warning"> </div>
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">WebGLJapaneseInput</div>
-      </div>
+        <div id="unity-build-title">Sloat Machine</div>
+      </div-->
     </div>
     <script>
       var container = document.querySelector("#unity-container");
@@ -56,15 +56,15 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/TestBuild.loader.js";
+      var loaderUrl = buildUrl + "/buildwebgl.loader.js";
       var config = {
-        dataUrl: buildUrl + "/TestBuild.data",
-        frameworkUrl: buildUrl + "/TestBuild.framework.js",
-        codeUrl: buildUrl + "/TestBuild.wasm",
+        dataUrl: buildUrl + "/buildwebgl.data",
+        frameworkUrl: buildUrl + "/buildwebgl.framework.js",
+        codeUrl: buildUrl + "/buildwebgl.wasm",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "WebGLJapaneseInput",
-        productVersion: "1.0",
+        companyName: "RootPointers",
+        productName: "Sloat Machine",
+        productVersion: "0.1",
         showBanner: unityShowBanner,
       };
 
@@ -82,8 +82,8 @@
         config.devicePixelRatio = 1;
         unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
-        canvas.style.width = "640px";
-        canvas.style.height = "480px";
+         canvas.style.width = "100%";
+        canvas.style.height = "100%";
       }
       loadingBar.style.display = "block";
 
@@ -98,7 +98,7 @@
             unityInstance.SetFullscreen(1);
           };
         }).catch((message) => {
-          alert(message);
+          console.log(message);
         });
       };
       document.body.appendChild(script);
