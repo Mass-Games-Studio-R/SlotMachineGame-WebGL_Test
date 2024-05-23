@@ -118,13 +118,14 @@
 			if (event.data === 'fullscreen') 
             {
 			    // Handle game completion
-			    console.log('Game has completed!');
+			    console.log('Going full screen');
                 if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => {
             console.log(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
         });
     } else {
         document.exitFullscreen();
+        console.log('Exit full screen');
     }
             }
       });
