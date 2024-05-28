@@ -115,7 +115,7 @@
       document.body.appendChild(script);
         window.addEventListener('message', function (event)
         {
-            if (/Android/i.test(navigator.userAgent)) {
+            //if (/Android/i.test(navigator.userAgent)) {
                 console.log('Browser is on Android');
                 if (event.data === 'fullscreen') {
                     // Handle game completion
@@ -130,27 +130,27 @@
                         console.log('Exit full screen');
                     }
                 }
-            }
-            else if (/iPhone|iPad|iPod/i.test(navigator.userAgent))
-            {
-                console.log('Browser is on Iphone');
-                var doc = window.document;
-                var docEl = doc.documentElement;
+            //}
+            //else if (/iPhone|iPad|iPod/i.test(navigator.userAgent))
+            //{
+            //    console.log('Browser is on Iphone');
+            //    var doc = window.document;
+            //    var docEl = doc.documentElement;
 
-                var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-                var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+            //    var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+            //    var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
 
-                if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement)
-                {
-                    console.log('Going full screen');
-                    requestFullScreen.call(docEl);
-                }
-                else
-                {
-                    cancelFullScreen.call(doc);
-                    console.log('Exit full screen');
-                }
-            }
+            //    if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement)
+            //    {
+            //        console.log('Going full screen');
+            //        requestFullScreen.call(docEl);
+            //    }
+            //    else
+            //    {
+            //        cancelFullScreen.call(doc);
+            //        console.log('Exit full screen');
+            //    }
+            //}
         });
     </script>
 
